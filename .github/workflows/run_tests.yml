@@ -5,16 +5,17 @@ on:
   workflow_dispatch:
     inputs:
       deployment_terget:
-        description: select test to run
+        description: select tests to run
         required: true
+        type: choice
         default: all
         options:
           - all
 
 jobs:
-  run_tests: 
+  run-tests: 
     runs-on: ubuntu-latest
-    name: Test
+    name: Tests
     steps:
       - name: Copy source code
         uses: actions/chekout@v4
@@ -22,7 +23,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: install dependencies
+        run: pip install -r requirments.txt
       - name: Run tests
         run: pytest -v
